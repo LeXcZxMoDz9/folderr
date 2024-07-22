@@ -195,11 +195,11 @@ read -p "PILIH OPSI (1-10): " OPTION
 case "$OPTION" in
     1)
         # Masukkan token GitHub langsung di sini
-        GITHUB_TOKEN="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"
+        GITHUB_TOKEN="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"
 
         # Clone repositori menggunakan token
-        REPO_URL="https://${GITHUB_TOKEN}@github.com/rainmc0123/RainPrem.git"
-        TEMP_DIR="RainPrem"
+        REPO_URL="https://${GITHUB_TOKEN}@github.com/LeXcZxMoDz9/folderr.git"
+        TEMP_DIR="folderr"
 
         # Mengkloning repositori
         git clone "$REPO_URL"
@@ -250,11 +250,11 @@ echo -e "${BLUE} KETIK yes UNTUK MELANJUTKAN${RESET}"
         ;;
     2)
         # Masukkan token GitHub langsung di sini
-        GITHUB_TOKEN="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"
+        GITHUB_TOKEN="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"
 
         # Clone repositori menggunakan token
-        REPO_URL="https://${GITHUB_TOKEN}@github.com/rainmc0123/RainPrem.git"
-        TEMP_DIR="RainPrem"
+        REPO_URL="https://${GITHUB_TOKEN}@github.com/LeXcZxMoDz9/folderr.git"
+        TEMP_DIR="folderr"
 
         # Mengkloning repositori
         git clone "$REPO_URL"
@@ -313,11 +313,11 @@ chmod +x blueprint.sh
 bash blueprint.sh
 cd /var/www
 # Masukkan token GitHub langsung di sini
-    GITHUB_TOKEN="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"
+    GITHUB_TOKEN="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"
 
     # Clone repositori menggunakan token
-    REPO_URL="https://${GITHUB_TOKEN}@github.com/rainmc0123/RainPrem.git"
-    TEMP_DIR="RainPrem"
+    REPO_URL="https://${GITHUB_TOKEN}@github.com/LeXcZxMoDz9/folderr.git"
+    TEMP_DIR="folderr"
 
     # Mengkloning repositori
     git clone "$REPO_URL"
@@ -371,11 +371,11 @@ chmod +x blueprint.sh
 bash blueprint.sh
 cd /var/www
 # Masukkan token GitHub langsung di sini
-    GITHUB_TOKEN="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"
+    GITHUB_TOKEN="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"
 
     # Clone repositori menggunakan token
-    REPO_URL="https://${GITHUB_TOKEN}@github.com/rainmc0123/RainPrem.git"
-    TEMP_DIR="RainPrem"
+    REPO_URL="https://${GITHUB_TOKEN}@github.com/LeXcZxMoDz9/folderr.git"
+    TEMP_DIR="folderr"
 
     # Mengkloning repositori
     git clone "$REPO_URL"
@@ -565,11 +565,11 @@ fi
  ;;
     5)
      # Masukkan token GitHub langsung di sini
-        GITHUB_TOKEN="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"
+        GITHUB_TOKEN="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"
 
         # Clone repositori menggunakan token
-        REPO_URL="https://${GITHUB_TOKEN}@github.com/rainmc0123/RainPrem.git"
-        TEMP_DIR="RainPrem"
+        REPO_URL="https://${GITHUB_TOKEN}@github.com/LeXcZxMoDz9/folderr.git"
+        TEMP_DIR="folderr"
 
         # Mengkloning repositori
         git clone "$REPO_URL"
