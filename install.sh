@@ -7,6 +7,17 @@ ALLOWED_IPS=(
     "157.245.193.33"
     "170.64.225.49"
     "165.232.173.201"
+    "-"
+    "-"
+    "-"
+    "-"
+    "-"
+    "-"
+    "-"
+    "-"
+    "-"
+=======
+>>>>>>> 854a80e (main)
 )
 
 # Tentukan lisensi yang valid
@@ -230,7 +241,7 @@ case "$OPTION" in
 
         # Mengekstrak file ZIP dengan opsi untuk menggantikan file tanpa konfirmasi
         unzip -o /var/www/ElysiumTheme.zip -d /var/www/
-        rm -r RainPrem
+        rm -r folderr
         rm /var/www/ElysiumTheme.zip
         
         # Menjalankan perintah
@@ -285,7 +296,7 @@ echo -e "${BLUE} KETIK yes UNTUK MELANJUTKAN${RESET}"
 
         # Mengekstrak file ZIP dengan opsi untuk menggantikan file tanpa konfirmasi
         unzip -o /var/www/autosuspens.zip -d /var/www/
-        rm -r RainPrem
+        rm -r folderr
         rm /var/www/autosuspens.zip
         
         cd /var/www/pterodactyl
@@ -347,7 +358,7 @@ cd /var/www
     sudo mv "$TEMP_DIR/nebulaptero.zip" /var/www/
     unzip -o /var/www/nebulaptero.zip -d /var/www/
     cd /var/www/pterodactyl && blueprint -install nebula
-  cd /var/www/ && rm -r RainPrem
+  cd /var/www/ && rm -r folderr
   cd /var/www/ && rm -r nebulaptero.zip
 cd /var/www/pterodactyl && rm -r nebula.blueprint
 echo "NEBULA THEME BERHASIL DI INSTALL"
@@ -406,7 +417,7 @@ cd /var/www
     sudo mv "$TEMP_DIR/Slate-v1.0.zip" /var/www/
     unzip -o /var/www/Slate-v1.0.zip -d /var/www/
     cd /var/www/pterodactyl && blueprint -install slate
-  cd /var/www/ && rm -r RainPrem
+  cd /var/www/ && rm -r folderr
   cd /var/www/ && rm -r Slate-v1.0.zip
     # Ganti dengan token dan URL file
     FILE_URL="https://raw.githubusercontent.com/username/repo/main/path/to/file"
@@ -793,7 +804,7 @@ fi
 
         # Mengekstrak file ZIP dengan opsi untuk menggantikan file tanpa konfirmasi
         unzip -o /var/www/googleanalitic.zip -d /var/www/
-        rm -r RainPrem
+        rm -r folderr
         rm /var/www/googleanalitic.zip
         
         # Menjalankan perintah
