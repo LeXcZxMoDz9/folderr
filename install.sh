@@ -16,8 +16,6 @@ ALLOWED_IPS=(
     "-"
     "-"
     "-"
-=======
->>>>>>> 854a80e (main)
 )
 
 # Tentukan lisensi yang valid
