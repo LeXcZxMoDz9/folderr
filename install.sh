@@ -4,6 +4,7 @@
 ALLOWED_IPS=(
     "192.241.133.15"
     "159.65.134.147"
+    "157.245.193.33"
 )
 
 # Tentukan lisensi yang valid
