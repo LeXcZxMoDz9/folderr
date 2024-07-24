@@ -57,7 +57,7 @@ if ! is_ip_allowed "$CURRENT_IP"; then
         echo "$i"
         sleep 1
     done
-    pkill -u $(whoami)  # Logout dari VPS
+    logout  # Logout dari VPS
     exit
 fi
 
