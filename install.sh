@@ -1,12 +1,5 @@
 #!/bin/bash
 
-# Inisialisasi file kesalahan jika tidak ada
-if [[ ! -f "$ERROR_FILE" ]]; then
-    echo "0" > "$ERROR_FILE"
-fi
-
-# Tampilkan teks setelah loading selesai
-display_text
 # Definisi warna untuk tampilan teks
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -17,15 +10,6 @@ RESET='\033[0m'  # Reset warna teks ke default
 # Fungsi untuk menyimpan konfigurasi
 save_config() {
     echo "DISABLE_ANIMATIONS=${DISABLE_ANIMATIONS}" > /var/www/pterodactyl/config/installer_config
-}
-
-# Fungsi untuk memuat konfigurasi
-load_config() {
-    if [ -f /var/www/pterodactyl/config/installer_config ]; then
-        source /var/www/pterodactyl/config/installer_config
-    else
-        DISABLE_ANIMATIONS=0
-    fi
 }
 
 # Fungsi untuk menampilkan teks dengan atau tanpa animasi
@@ -41,9 +25,6 @@ animate_text() {
         echo ""
     fi
 }
-
-# Memuat konfigurasi
-load_config
 
 #!/bin/bash
 
