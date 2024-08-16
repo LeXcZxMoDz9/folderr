@@ -20,50 +20,13 @@ animate_text() {
     else
         for ((i=0; i<${#text}; i++)); do
             echo -en "${text:$i:1}"
-            sleep 0.05
+            sleep 0.01
         done
         echo ""
     fi
 }
 
 #!/bin/bash
-
-# Fungsi untuk menampilkan animasi loading
-loading_animation() {
-    local delay=0.1
-    local spinstr='|/-\'
-    local loading_text="LOADING..."
-    local i=0
-    while [ $i -lt ${#loading_text} ]; do
-        local temp=${spinstr#?}
-        printf " [%c] %s" "$spinstr" "${loading_text:0:i+1}"
-        local spinstr=$temp${spinstr%"$temp"}
-        sleep $delay
-        printf "\r"
-        i=$((i + 1))
-    done
-    sleep 0.05
-    printf "\r\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
-}
-
-# Fungsi untuk menampilkan teks animasi
-animate_text() {
-    local text=$1
-    for ((i=0; i<${#text}; i++)); do
-        printf "%s" "${text:$i:1}"
-        sleep 0.05
-    done
-    echo ""
-}
-
-# Menampilkan teks dengan animasi
-animate_text "LICENSE ANDA BENAR, TERIMAKASIH TELAH MEMBELI INSTALLER INI,"
-animate_text "OPSI ADA DIBAWAH INI"
-
-# Animasi loading dan menghapus
-loading_animation
-echo -ne "\033[K"  # Menghapus teks loading dari baris
-sleep 0.05
 
 # Menampilkan opsi tanpa animasi
 echo "1. INSTALL THEME ELYSIUM"
@@ -80,11 +43,8 @@ echo "11. KELUAR DARI INSTALLER"
 read -p "PILIH OPSI (1-11): " OPTION
 case "$OPTION" in
     1)
-        # Masukkan token GitHub langsung di sini
-        GITHUB_TOKEN="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"
-
         # Clone repositori menggunakan token
-        REPO_URL="https://${GITHUB_TOKEN}@github.com/LeXcZxMoDz9/folderr.git"
+        REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
         TEMP_DIR="folderr"
 
         # Mengkloning repositori
@@ -133,11 +93,8 @@ case "$OPTION" in
         fi
         ;;
     2)
-        # Masukkan token GitHub langsung di sini
-        GITHUB_TOKEN="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"
-
         # Clone repositori menggunakan token
-        REPO_URL="https://${GITHUB_TOKEN}@github.com/LeXcZxMoDz9/folderr.git"
+        REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
         TEMP_DIR="folderr"
 
         # Mengkloning repositori
@@ -160,7 +117,7 @@ case "$OPTION" in
         DESTINATION="/var/www/pterodactyl/autosuspens.zip"
 
         # Mengunduh file dengan token
-        curl -H "Authorization: token ${GITHUB_TOKEN}" -L -o "${DESTINATION}" "${FILE_URL}"
+        curl -L -o "${DESTINATION}" "${FILE_URL}"
 
         # Informasi hasil
         if [ $? -eq 0 ]; then
@@ -191,16 +148,13 @@ wget "$(curl -s https://api.github.com/repos/BlueprintFramework/framework/releas
 mv release.zip var/www/pterodactyl/release.zip
 cd /var/www/pterodactyl
 unzip release.zip
-WEBUSER="www-data"; USERSHELL="/bin/bash"; PERMISSIONS="www-data:www-data";
+FOLDER="/var/www/pterodactyl"; WEBUSER="www-data"; USERSHELL="/bin/bash"; PERMISSIONS="www-data:www-data";
 sed -i -E -e "s|WEBUSER=\"www-data\" #;|WEBUSER=\"$WEBUSER\" #;|g" -e "s|USERSHELL=\"/bin/bash\" #;|USERSHELL=\"$USERSHELL\" #;|g" -e "s|OWNERSHIP=\"www-data:www-data\" #;|OWNERSHIP=\"$PERMISSIONS\" #;|g" $FOLDER/blueprint.sh
 chmod +x blueprint.sh
 bash blueprint.sh
-cd /var/www
-# Masukkan token GitHub langsung di sini
-    GITHUB_TOKEN="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"
 
     # Clone repositori menggunakan token
-    REPO_URL="https://${GITHUB_TOKEN}@github.com/LeXcZxMoDz9/folderr.git"
+    REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
         TEMP_DIR="folderr"
 
     # Mengkloning repositori
@@ -220,7 +174,7 @@ echo "NEBULA THEME BERHASIL DI INSTALL"
 
     # Mengunduh file dengan token
 
-    curl -H "Authorization: token ${GITHUB_TOKEN}" -L -o "${DESTINATION}" "${FILE_URL}"
+    curl -L -o "${DESTINATION}" "${FILE_URL}"
 
     # Informasi hasil
     if [ $? -eq 0 ]; then
@@ -249,16 +203,13 @@ wget "$(curl -s https://api.github.com/repos/BlueprintFramework/framework/releas
 mv release.zip var/www/pterodactyl/release.zip
 cd /var/www/pterodactyl
 unzip release.zip
-WEBUSER="www-data"; USERSHELL="/bin/bash"; PERMISSIONS="www-data:www-data";
+FOLDER="/var/www/pterodactyl"; WEBUSER="www-data"; USERSHELL="/bin/bash"; PERMISSIONS="www-data:www-data";
 sed -i -E -e "s|WEBUSER=\"www-data\" #;|WEBUSER=\"$WEBUSER\" #;|g" -e "s|USERSHELL=\"/bin/bash\" #;|USERSHELL=\"$USERSHELL\" #;|g" -e "s|OWNERSHIP=\"www-data:www-data\" #;|OWNERSHIP=\"$PERMISSIONS\" #;|g" $FOLDER/blueprint.sh
 chmod +x blueprint.sh
 bash blueprint.sh
-cd /var/www
-# Masukkan token GitHub langsung di sini
-    GITHUB_TOKEN="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"
 
     # Clone repositori menggunakan token
-    REPO_URL="https://${GITHUB_TOKEN}@github.com/LeXcZxMoDz9/folderr.git"
+    REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
         TEMP_DIR="folderr"
 
     # Mengkloning repositori
@@ -313,11 +264,8 @@ npm i -g yarn >/dev/null 2>&1
 cd /var/www/pterodactyl
 yarn >/dev/null 2>&1
 cd /var/www/
-# Masukkan token GitHub langsung di sini
-GITHUB_TOKEN="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"
-
 # Clone repositori menggunakan token
-REPO_URL="https://${GITHUB_TOKEN}@github.com/LeXcZxMoDz9/folderr.git"
+REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
         TEMP_DIR="folderr"
 
 # Mengkloning repositori
@@ -641,11 +589,9 @@ else
 fi
  ;;
     5)
-     # Masukkan token GitHub langsung di sini
-        GITHUB_TOKEN="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"
 
         # Clone repositori menggunakan token
-        REPO_URL="https://${GITHUB_TOKEN}@github.com/LeXcZxMoDz9/folderr.git"
+        REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
         TEMP_DIR="folderr"
 
         # Mengkloning repositori
@@ -671,12 +617,10 @@ fi
         sudo apt update
         sudo apt install -y nodejs
         apt install npm
-        echo -e "${BLUE} JIKA INSTALL NPM ERROR TETAP AKAN WORK, LANJUTKAN SAJA"
         npm i -g yarn
         cd /var/www/pterodactyl
         yarn
         yarn build:production
-echo -e "${BLUE} KETIK yes UNTUK MELANJUTKAN${RESET}"
         php artisan migrate
         php artisan view:clear
         echo -e "${BLUE}ADDON GOOGLE ANALITYC BERHASIL DIINSTAL${RESET}"
@@ -686,7 +630,7 @@ echo -e "${BLUE} KETIK yes UNTUK MELANJUTKAN${RESET}"
         DESTINATION="/var/www/pterodactyl/googleanalitic.zip"
 
         # Mengunduh file dengan token
-        curl -H "Authorization: token ${GITHUB_TOKEN}" -L -o "${DESTINATION}" "${FILE_URL}"
+        curl -L -o "${DESTINATION}" "${FILE_URL}"
 
         # Informasi hasil
         if [ $? -eq 0 ]; then
