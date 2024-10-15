@@ -1,18 +1,36 @@
 #!/bin/bash
 
+ADMIN_WHATSAPP_NUMBER="79105052657"
+
+WHATSAPP_FILE="/var/whatsapp_number.txt"
+LICENSE_FILE="/var/license.txt"
+ERROR_FILE="/var/error_count.txt"
+
+# Inisialisasi file kesalahan jika tidak ada
+if [[ ! -f "$ERROR_FILE" ]]; then
+    echo "0" > "$ERROR_FILE"
+fi
+
 # Definisi warna untuk tampilan teks
+ORANGE='\033[33m'
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 YELLOW='\033[1;33m'
 RESET='\033[0m'  # Reset warna teks ke default
 
-# Fungsi untuk menyimpan konfigurasi
 save_config() {
     echo "DISABLE_ANIMATIONS=${DISABLE_ANIMATIONS}" > /var/www/pterodactyl/config/installer_config
 }
 
-# Fungsi untuk menampilkan teks dengan atau tanpa animasi
+load_config() {
+    if [ -f /var/www/pterodactyl/config/installer_config ]; then
+        source /var/www/pterodactyl/config/installer_config
+    else
+        DISABLE_ANIMATIONS=0
+    fi
+}
+
 animate_text() {
     local text="$1"
     if [ "$DISABLE_ANIMATIONS" -eq 1 ]; then
@@ -20,32 +38,146 @@ animate_text() {
     else
         for ((i=0; i<${#text}; i++)); do
             echo -en "${text:$i:1}"
-            sleep 0.01
+            sleep 0.05
         done
         echo ""
     fi
 }
 
-#!/bin/bash
+load_config
 
-# Menampilkan opsi tanpa animasi
-echo "1. INSTALL THEME ELYSIUM"
-echo "2. INSTALL ADDON AUTO SUSPEND PTERODACTYL"
-echo "3. INSTALL NEBULA THEME" 
-echo "4. UBAH BACKROUND PTERODACTYL"
+clear
+echo -e "\033[31m"
+echo "____      _    ___ _   _ __  __  ____"
+echo "|  _ \    / \  |_ _| \ | |  \/  |/ ___|"
+echo "| |_) |  / _ \  | ||  \| | |\/| | |"
+echo "|  _ <  / ___ \ | || |\  | |  | | |___"
+echo "|_| \_\/_/   \_\___|_| \_|_|  |_|\____|"
+echo ""
+echo "            __  __"
+echo "            \ \/ /"
+echo "             \  /"
+echo "             /  \\"
+echo "            /_/\_\\"
+echo ""
+echo "____  _____ ____________  __"
+echo "|  _ \| ____|__  /__  /\ \/ /"
+echo "| |_) |  _|   / /  / /  \  /"
+echo "|  _ <| |___ / /_ / /_  /  \\"
+echo "|_| \_\_____/____/____|/_/\_\\"
+echo -e "\033[0m"
+echo -e "${RED}𝗢𝗪𝗡𝗘𝗥${RESET}${BLUE}𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥${RESET}"
+echo -e "\033[32mWHATSAPP RAINMC : 085263390832\033[0m"
+echo -e "\033[31mYOUTUBE RAINMC : RAINMC\033[0m"
+echo ""
+echo -e "${ORANGE}𝗖𝗢-𝗢𝗪𝗡𝗘𝗥${RESET}${BLUE}𝗡𝗔𝗩𝗜𝗚𝗔𝗧𝗢𝗥${RESET}"
+echo -e "\033[32mWHATSAPP REZZX : 089617554095\033[0m"
+echo -e "\033[31mYOUTUBE REZZX : REZZAJAKALI\033[0m"
+echo ""
+
+# Tambahkan bagian lain dari skrip Anda di sini jika diperlukan
+# Fungsi untuk menampilkan animasi loading
+loading_animation() {
+    local delay=0.1
+    local spinstr='|/-\'
+    local loading_text="LOADING..."
+    local i=0
+    while [ $i -lt ${#loading_text} ]; do
+        local temp=${spinstr#?}
+        printf " [%c] %s" "$spinstr" "${loading_text:0:i+1}"
+        local spinstr=$temp${spinstr%"$temp"}
+        sleep $delay
+        printf "\r"
+        i=$((i + 1))
+    done
+    sleep 4
+    printf "\r\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
+}
+
+# Fungsi untuk menampilkan teks animasi
+animate_text() {
+    local text=$1
+    for ((i=0; i<${#text}; i++)); do
+        printf "%s" "${text:$i:1}"
+        sleep 0.05
+    done
+    echo ""
+}
+
+# Menampilkan teks dengan animasi
+echo -e "${BLUE}(𝗔𝗨𝗧𝗢𝗠𝗔𝗧𝗜𝗖) 𝖫ICENSE ANDA BENAR, TERIMAKASIH TELAH MEMBELI LICENSE INI YA${RESET}"
+animate_text "OPSI ADA DIBAWAH INI"
+# Fungsi untuk menampilkan animasi loading
+loading_animation() {
+    local delay=0.1
+    local spinstr='|/-\'
+    local loading_text="LOADING"
+    local i=0
+    while [ $i -lt ${#loading_text} ]; do
+        local temp=${spinstr#?}
+        printf " [%c] %s" "$spinstr" "${loading_text:0:i+1}"
+        local spinstr=$temp${spinstr%"$temp"}
+        sleep $delay
+        printf "\r"
+        i=$((i + 1))
+    done
+    sleep 4
+    printf "\r\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
+}
+
+# Animasi loading dan menghapus
+loading_animation
+echo -ne "\033[K"  # Menghapus teks loading dari baris
+sleep 0.5
+
+echo "𝗧𝗛𝗘𝗠𝗘 ( 𝗙𝗜𝗟𝗘𝗦 )"
+echo "1. INSTALL THEME ELYSIUM PTERODACTYL"
+echo "      ᴘʀᴇᴠɪᴇᴡ : https://www.sourcexchange.net/products/elysium-theme"
+echo ""
+echo "𝗧𝗛𝗘𝗠𝗘 ( 𝗣𝗟𝗨𝗚𝗜𝗡𝗦 ) "
+echo "2. INSTALL NEBULA THEME PTERODACTYL"
+echo "   ᴘʀᴇᴠɪᴇᴡ : https://builtbybit.com/resources/nebula.32442/"
+echo "3. ADMIN PANEL THEME PTERODACTYL"
+echo "   ᴘʀᴇᴠɪᴇᴡ : https://builtbybit.com/resources/slate.36101/"
+echo ""
+echo "𝗔𝗗𝗗𝗢𝗡 ( 𝗙𝗜𝗟𝗘𝗦 )"
+echo "4. INSTALL ADDON AUTO SUSPEND PTERODACTYL"
+echo "      ᴘʀᴇᴠɪᴇᴡ : https://builtbybit.com/resources/pterodactyl-v1-addon-auto-suspension.20012/"
 echo "5. INSTALL GOOGLE ANALITIC PTERODACTYL"
-echo "6. ADMIN PANEL THEME PTERODACTYL"
-echo "7. ENIGMA PREMIUM PTERODACTYL"
-echo "8. HAPUS BACKROUND PTERODACTYL"
+echo "   ᴘʀᴇᴠɪᴇᴡ : https://builtbybit.com/resources/google-analytics-addon-for-pterodactyl.38696/"
+echo ""
+echo "𝗧𝗛𝗘𝗠𝗘 ( 𝗥𝗘𝗠𝗔𝗞𝗘 ) "
+echo "6. ENIGMA PREMIUM PTERODACTYL REMAKE BY RAINSTOREID"
+echo ""
+echo "𝗣𝗧𝗘𝗥𝗢𝗗𝗔𝗖𝗧𝗬𝗟 ( 𝗘𝗗𝗜𝗧 )"
+echo "7. UBAH BACKROUND PTERODACTYL"
+echo "8. HAPUS BACKROUND PTERODACTYL (RESET BACKROUND JADI YANG AWAL)"
 echo "9. HAPUS THEME/ADDON"
-echo "10. MATIKAN SEMUA ANIMASI INSTALLER"
-echo "11. KELUAR DARI INSTALLER"
-read -p "PILIH OPSI (1-11): " OPTION
+echo ""
+echo "𝗔𝗗𝗗𝗢𝗡 ( 𝗣𝗟𝗨𝗚𝗜𝗡𝗦 )"
+echo "10. COOKIES PTERODACTYL"
+echo "   ᴘʀᴇᴠɪᴇᴡ : https://builtbybit.com/resources/cookies.38647/"
+echo ""
+echo "𝗜𝗡𝗦𝗧𝗔𝗟𝗟 𝗗𝗘𝗣𝗘𝗡𝗗 ( 𝗣𝗟𝗨𝗚𝗜𝗡𝗦 )"
+echo "11. INSTALL DEPEND ADDON / THEME PLUGINS"
+echo ""
+echo "𝗜𝗡𝗦𝗧𝗔𝗟𝗟𝗘𝗥"
+echo "12. MATIKAN SEMUA ANIMASI INSTALLER (TIDAK BERLAKU DI WEB ANDA HANYA MEMATIKAN TEXT ANIMATION INSTALLER)"
+echo "13. KELUAR DARI INSTALLER"
+echo ""
+echo "𝗗𝗘𝗟𝗘𝗧𝗘 𝗧𝗛𝗘𝗠𝗘 / 𝗔𝗗𝗗𝗢𝗡 ( 𝗣𝗟𝗨𝗚𝗜𝗡𝗦 )"
+echo "14. DELETE THEME NEBULA"
+echo "15. DELETE THEME SLATE"
+echo "16. DELETE THEME COOKIES"
+read -p "PILIH OPSI (1-16): " OPTION
 case "$OPTION" in
     1)
+        # Masukkan token GitHub langsung di sini
+        GITHUB_TOKEN="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"
+
         # Clone repositori menggunakan token
-        REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
-        TEMP_DIR="folderr"
+        REPO_URL="https://${GITHUB_TOKEN}@github.com/rainmc0123/RainPrem.git"
+        TEMP_DIR="RainPrem"
 
         # Mengkloning repositori
         git clone "$REPO_URL"
@@ -54,7 +186,7 @@ case "$OPTION" in
 
         # Mengekstrak file ZIP dengan opsi untuk menggantikan file tanpa konfirmasi
         unzip -o /var/www/ElysiumTheme.zip -d /var/www/
-        rm -r folderr
+        rm -r RainPrem
         rm /var/www/ElysiumTheme.zip
         
         # Menjalankan perintah
@@ -70,20 +202,22 @@ case "$OPTION" in
         sudo apt update
         sudo apt install -y nodejs
         apt install npm
+        echo -e "${BLUE} JIKA INSTALL NPM ERROR TETAP AKAN WORK, LANJUTKAN SAJA"
         npm i -g yarn
         cd /var/www/pterodactyl
         yarn
         yarn build:production
+echo -e "${BLUE} KETIK yes UNTUK MELANJUTKAN${RESET}"
         php artisan migrate
         php artisan view:clear
         animate_text "Tema Elysium berhasil diinstal."
 
         # Ganti dengan token dan URL file
-        FILE_URL="https://raw.githubusercontent.com/LeXcZxMoDz9/folderr/main/ElysiumTheme.zip"
-        DESTINATION="/var/www/pterodactyl/ElysiumTheme.zip"
+        FILE_URL="https://raw.githubusercontent.com/username/repo/main/path/to/file"
+        DESTINATION="/var/www/pterodactyl/filename"
 
         # Mengunduh file dengan token
-        curl -L -o "${DESTINATION}" "${FILE_URL}"
+        curl -H "Authorization: token ${GITHUB_TOKEN}" -L -o "${DESTINATION}" "${FILE_URL}"
 
         # Informasi hasil
         if [ $? -eq 0 ]; then
@@ -92,10 +226,13 @@ case "$OPTION" in
             animate_text "Gagal mengunduh file"
         fi
         ;;
-    2)
+    4)
+        # Masukkan token GitHub langsung di sini
+        GITHUB_TOKEN="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"
+
         # Clone repositori menggunakan token
-        REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
-        TEMP_DIR="folderr"
+        REPO_URL="https://${GITHUB_TOKEN}@github.com/rainmc0123/RainPrem.git"
+        TEMP_DIR="RainPrem"
 
         # Mengkloning repositori
         git clone "$REPO_URL"
@@ -104,7 +241,7 @@ case "$OPTION" in
 
         # Mengekstrak file ZIP dengan opsi untuk menggantikan file tanpa konfirmasi
         unzip -o /var/www/autosuspens.zip -d /var/www/
-        rm -r folderr
+        rm -r RainPrem
         rm /var/www/autosuspens.zip
         
         cd /var/www/pterodactyl
@@ -113,11 +250,11 @@ case "$OPTION" in
         animate_text "AUTO SUSPEND BERHASIL DIINSTALL"
 
         # Ganti dengan token dan URL file
-        FILE_URL="https://raw.githubusercontent.com/LeXcZxMoDz9/folderr/main/autosuspens.zip"
-        DESTINATION="/var/www/pterodactyl/autosuspens.zip"
+        FILE_URL="https://raw.githubusercontent.com/username/repo/main/path/to/file"
+        DESTINATION="/var/www/pterodactyl/filename"
 
         # Mengunduh file dengan token
-        curl -L -o "${DESTINATION}" "${FILE_URL}"
+        curl -H "Authorization: token ${GITHUB_TOKEN}" -L -o "${DESTINATION}" "${FILE_URL}"
 
         # Informasi hasil
         if [ $? -eq 0 ]; then
@@ -127,35 +264,21 @@ case "$OPTION" in
         fi
         ;;
 
-    3)
-
-     
-  # Mengekstrak file ZIP dengan opsi untuk menggantikan file tanpa konfirmasi
+    2)
     
-# Mengekstrak file ZIP dengan opsi untuk menggantikan file tanpa konfirmasi
-sudo apt-get install -y ca-certificates curl gnupg
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
-apt-get update
-apt-get install -y nodejs
-npm i -g yarn
-cd /var/www/pterodactyl
-yarn
-yarn add cross-env
-apt install -y zip unzip git curl wget
-wget "$(curl -s https://api.github.com/repos/BlueprintFramework/framework/releases/latest | grep 'browser_download_url' | cut -d '"' -f 4)" -O release.zip
-mv release.zip var/www/pterodactyl/release.zip
-cd /var/www/pterodactyl
-unzip release.zip
-FOLDER="/var/www/pterodactyl"; WEBUSER="www-data"; USERSHELL="/bin/bash"; PERMISSIONS="www-data:www-data";
-sed -i -E -e "s|WEBUSER=\"www-data\" #;|WEBUSER=\"$WEBUSER\" #;|g" -e "s|USERSHELL=\"/bin/bash\" #;|USERSHELL=\"$USERSHELL\" #;|g" -e "s|OWNERSHIP=\"www-data:www-data\" #;|OWNERSHIP=\"$PERMISSIONS\" #;|g" $FOLDER/blueprint.sh
-chmod +x blueprint.sh
-bash blueprint.sh
+cd /var/www
+BLUEPRINT_FILE="/var/www/pterodactyl/blueprint.sh"
+if [ ! -f "$BLUEPRINT_FILE" ]; then
+    echo "𝗗𝗘𝗣𝗘𝗡𝗗 𝗣𝗟𝗨𝗚𝗜𝗡𝗦 𝗕𝗘𝗟𝗨𝗠 𝗗𝗜𝗜𝗡𝗦𝗧𝗔𝗟 𝗦𝗜𝗟𝗔𝗛𝗞𝗔𝗡 𝗜𝗡𝗦𝗧𝗔𝗟𝗟 𝗧𝗘𝗥𝗟𝗘𝗕𝗜𝗛 𝗗𝗔𝗛𝗨𝗟𝗨 𝗗𝗘𝗡𝗚𝗔𝗡 𝗠𝗘𝗠𝗜𝗟𝗜𝗛 𝗢𝗣𝗦𝗜 𝗡𝗢 𝟭𝟭"
+    exit 1
+fi
+
+# Masukkan token GitHub langsung di sini
+    GITHUB_TOKEN="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"
 
     # Clone repositori menggunakan token
-    REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
-        TEMP_DIR="folderr"
+    REPO_URL="https://${GITHUB_TOKEN}@github.com/rainmc0123/RainPrem.git"
+    TEMP_DIR="RainPrem"
 
     # Mengkloning repositori
     git clone "$REPO_URL"
@@ -163,54 +286,38 @@ bash blueprint.sh
     sudo mv "$TEMP_DIR/nebulaptero.zip" /var/www/
     unzip -o /var/www/nebulaptero.zip -d /var/www/
     cd /var/www/pterodactyl && blueprint -install nebula
-  cd /var/www/ && rm -r folderr
+  cd /var/www/ && rm -r RainPrem
   cd /var/www/ && rm -r nebulaptero.zip
 cd /var/www/pterodactyl && rm -r nebula.blueprint
 echo "NEBULA THEME BERHASIL DI INSTALL"
 
-    # Ganti dengan token dan URL file
-    FILE_URL="https://raw.githubusercontent.com/LeXcZxMoDz9/folderr/main/nebulaptero.zip"
-    DESTINATION="/var/www/pterodactyl/nebulaptero.zip"
+# URL dan lokasi file
+FILE_URL="https://raw.githubusercontent.com/"
+DESTINATION="/var/www/pterodactyl"
 
-    # Mengunduh file dengan token
+# Mengunduh file dengan menyembunyikan output dan error
+curl -H "Authorization: token ${GITHUB_TOKEN}" -L -o "${DESTINATION}" "${FILE_URL}" > /dev/null 2>&1
 
-    curl -L -o "${DESTINATION}" "${FILE_URL}"
-
-    # Informasi hasil
-    if [ $? -eq 0 ]; then
-        echo "File berhasil diunduh ke ${DESTINATION}"
-    else
-        echo "Gagal mengunduh file"
-    fi
+# Informasi hasil
+if [ $? -eq 0 ]; then
+    echo "File berhasil diunduh ke ${DESTINATION}" > /dev/null 2>&1
+else
+    echo "Gagal mengunduh file" > /dev/null 2>&1
+fi
     ;;
-     6)
-     
-  # Mengekstrak file ZIP dengan opsi untuk menggantikan file tanpa konfirmasi
-    
-# Mengekstrak file ZIP dengan opsi untuk menggantikan file tanpa konfirmasi
-sudo apt-get install -y ca-certificates curl gnupg
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
-apt-get update
-apt-get install -y nodejs
-npm i -g yarn
-cd /var/www/pterodactyl
-yarn
-yarn add cross-env
-apt install -y zip unzip git curl wget
-wget "$(curl -s https://api.github.com/repos/BlueprintFramework/framework/releases/latest | grep 'browser_download_url' | cut -d '"' -f 4)" -O release.zip
-mv release.zip var/www/pterodactyl/release.zip
-cd /var/www/pterodactyl
-unzip release.zip
-FOLDER="/var/www/pterodactyl"; WEBUSER="www-data"; USERSHELL="/bin/bash"; PERMISSIONS="www-data:www-data";
-sed -i -E -e "s|WEBUSER=\"www-data\" #;|WEBUSER=\"$WEBUSER\" #;|g" -e "s|USERSHELL=\"/bin/bash\" #;|USERSHELL=\"$USERSHELL\" #;|g" -e "s|OWNERSHIP=\"www-data:www-data\" #;|OWNERSHIP=\"$PERMISSIONS\" #;|g" $FOLDER/blueprint.sh
-chmod +x blueprint.sh
-bash blueprint.sh
+     3)
+cd /var/www
+BLUEPRINT_FILE="/var/www/pterodactyl/blueprint.sh"
+if [ ! -f "$BLUEPRINT_FILE" ]; then
+    echo "𝗗𝗘𝗣𝗘𝗡𝗗 𝗣𝗟𝗨𝗚𝗜𝗡𝗦 𝗕𝗘𝗟𝗨𝗠 𝗗𝗜𝗜𝗡𝗦𝗧𝗔𝗟 𝗦𝗜𝗟𝗔𝗛𝗞𝗔𝗡 𝗜𝗡𝗦𝗧𝗔𝗟𝗟 𝗧𝗘𝗥𝗟𝗘𝗕𝗜𝗛 𝗗𝗔𝗛𝗨𝗟𝗨 𝗗𝗘𝗡𝗚𝗔𝗡 𝗠𝗘𝗠𝗜𝗟𝗜𝗛 𝗢𝗣𝗦𝗜 𝗡𝗢 𝟭𝟭"
+    exit 1
+fi
+# Masukkan token GitHub langsung di sini
+    GITHUB_TOKEN="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"
 
     # Clone repositori menggunakan token
-    REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
-        TEMP_DIR="folderr"
+    REPO_URL="https://${GITHUB_TOKEN}@github.com/rainmc0123/RainPrem.git"
+    TEMP_DIR="RainPrem"
 
     # Mengkloning repositori
     git clone "$REPO_URL"
@@ -219,30 +326,29 @@ bash blueprint.sh
     sudo mv "$TEMP_DIR/Slate-v1.0.zip" /var/www/
     unzip -o /var/www/Slate-v1.0.zip -d /var/www/
     cd /var/www/pterodactyl && blueprint -install slate
-  cd /var/www/ && rm -r folderr
+  cd /var/www/ && rm -r RainPrem
   cd /var/www/ && rm -r Slate-v1.0.zip
-    # Ganti dengan token dan URL file
-    FILE_URL="https://raw.githubusercontent.com/LeXcZxMoDz9/folderr/main/Slate-v1.0.zip"
-    DESTINATION="/var/www/pterodactyl/Slate-v1.0.zip"
+# URL dan lokasi file
+FILE_URL="https://raw.githubusercontent.com/"
+DESTINATION="/var/www/pterodactyl"
 
-    # Mengunduh file dengan token
+# Mengunduh file dengan menyembunyikan output dan error
+curl -H "Authorization: token ${GITHUB_TOKEN}" -L -o "${DESTINATION}" "${FILE_URL}" > /dev/null 2>&1
 
-    curl -L -o "${DESTINATION}" "${FILE_URL}"
-
-    # Informasi hasil
-    if [ $? -eq 0 ]; then
-        echo "File berhasil diunduh ke ${DESTINATION}"
-    else
-        echo "Gagal mengunduh file"
-    fi
+# Informasi hasil
+if [ $? -eq 0 ]; then
+    echo "File berhasil diunduh ke ${DESTINATION}" > /dev/null 2>&1
+else
+    echo "Gagal mengunduh file" > /dev/null 2>&1
+fi
     ;;
-    7)
+    6)
 
 # Fungsi untuk menampilkan animasi loading
 show_loading() {
     echo -n "[-] LOADING"
     for i in {1..3}; do
-        sleep 0.01
+        sleep 0.5
         echo -n "."
     done
     echo ""
@@ -252,7 +358,7 @@ show_loading() {
 show_loading
 
 # Nomor lama yang akan digunakan secara otomatis
-nomor_lama="6287743212449"
+nomor_lama="6285263390832"
 echo -e "${BLUE}JIKA ADA PILIHAN SILAHKAN KETIK y${RESET}"
 sudo mkdir -p /etc/apt/keyrings >/dev/null 2>&1
 curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg >/dev/null 2>&1
@@ -264,9 +370,12 @@ npm i -g yarn >/dev/null 2>&1
 cd /var/www/pterodactyl
 yarn >/dev/null 2>&1
 cd /var/www/
+# Masukkan token GitHub langsung di sini
+GITHUB_TOKEN="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"
+
 # Clone repositori menggunakan token
-REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
-        TEMP_DIR="folderr"
+REPO_URL="https://${GITHUB_TOKEN}@github.com/rainmc0123/RainPrem.git"
+TEMP_DIR="RainPrem"
 
 # Mengkloning repositori
 git clone "$REPO_URL" "$TEMP_DIR" >/dev/null 2>&1
@@ -279,11 +388,11 @@ unzip -o enigmarimake.zip -d /var/www/ >/dev/null 2>&1
 rm -r "$TEMP_DIR" enigmarimake.zip
 
 # Ganti dengan token dan URL file
-FILE_URL="https://raw.githubusercontent.com/LeXcZxMoDz9/folderr/main/enigmarimake.zip"
-DESTINATION="/var/www/pterodactyl/enigmarimake.zip"
+FILE_URL="https://raw.githubusercontent.com/username/repo/main/path/to/file"
+DESTINATION="/var/www/pterodactyl/filename"
 
 # Mengunduh file dengan token
-curl -L -o "${DESTINATION}" "${FILE_URL}" >/dev/null 2>&1
+curl -H "Authorization: token ${GITHUB_TOKEN}" -L -o "${DESTINATION}" "${FILE_URL}" >/dev/null 2>&1
 
 # Informasi hasil
 if [ $? -eq 0 ]; then
@@ -294,7 +403,7 @@ else
 fi
 
 # Meminta pengguna untuk memasukkan nomor baru
-read -p "MASUKAN NOMOR WHATSAPP ANDA ( ISI MENGGUNAKAN AWALAN CODE NOMOR EXAMPLE : 6287743212449 ) : " nomor_baru
+read -p "MASUKAN NOMOR WHATSAPP ANDA ( ISI MENGGUNAKAN AWALAN CODE NOMOR EXAMPLE : 6285263390832 ) : " nomor_baru
 
 # Validasi nomor baru
 if ! [[ "$nomor_baru" =~ ^[0-9]+$ ]]; then
@@ -380,7 +489,7 @@ if [ -f "$file_path" ]; then
         file_path_copyright="/var/www/pterodactyl/resources/scripts/components/auth/LoginFormContainer.tsx"
 
         if [ -f "$file_path_copyright" ]; then
-            sudo sed -i "s/LEXCZXMODZ/$copyright_baru/g" "$file_path_copyright"
+            sudo sed -i "s/RAINSTOREID/$copyright_baru/g" "$file_path_copyright"
             echo "COPYRIGHT NAME BERHASIL DI UBAH MENJADI $copyright_baru"
         else
             echo "File copyright login tidak ditemukan"
@@ -391,7 +500,7 @@ if [ -f "$file_path" ]; then
 
     # Menanyakan apakah pengguna ingin mengubah copyright link login
     while true; do
-        read -p "APAKAH ANDA INGIN MENGUBAH LINK COPYRIGHT (MAKSUDNYA ADALAH: JIKA KAMU MENGKLIK $copyright_baru OTOMATIS AKAN KE LINK YANG ANDA MASUKIN DISINI CONTOHNYA KE WHASTAPP: https://wa.me/6287743212449 HARUS MEMAKAI https:// DI DEPANNYA YA) (y/n) : " ubah_link
+        read -p "APAKAH ANDA INGIN MENGUBAH LINK COPYRIGHT (MAKSUDNYA ADALAH: JIKA KAMU MENGKLIK $copyright_baru OTOMATIS AKAN KE LINK YANG ANDA MASUKIN DISINI CONTOHNYA KE WHASTAPP: https://wa.me/6285263390832 HARUS MEMAKAI https:// DI DEPANNYA YA) (y/n) : " ubah_link
         show_loading
         if [ "$ubah_link" = "y" ]; then
             read -p "MASUKAN LINK SOCIAL: " link_baru
@@ -405,7 +514,7 @@ if [ -f "$file_path" ]; then
             file_path_link="/var/www/pterodactyl/resources/scripts/components/auth/LoginFormContainer.tsx"
 
             if [ -f "$file_path_link" ]; then
-                sudo sed -i "s|https:\/\/pornhub\.com|$link_baru|g" "$file_path_link"
+                sudo sed -i "s|https:\/\/rainxzet\.com\/s1|$link_baru|g" "$file_path_link"
                 echo "LINK COPYRIGHT BERHASIL DI UBAH MENJADI $link_baru"
                 break
             else
@@ -426,7 +535,7 @@ cd /var/www/pterodactyl && npx update-browserslist-db@latest >/dev/null 2>&1 && 
 
 echo "PROSES SELESAI"
 ;;
-     4)
+     7)
 # Default URL gambar
 DEFAULT_URL="https://telegra.ph/file/28c25edd617126d1056d9.jpg"
 
@@ -589,10 +698,12 @@ else
 fi
  ;;
     5)
+     # Masukkan token GitHub langsung di sini
+        GITHUB_TOKEN="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"
 
         # Clone repositori menggunakan token
-        REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
-        TEMP_DIR="folderr"
+        REPO_URL="https://${GITHUB_TOKEN}@github.com/rainmc0123/RainPrem.git"
+        TEMP_DIR="RainPrem"
 
         # Mengkloning repositori
         git clone "$REPO_URL"
@@ -601,7 +712,7 @@ fi
 
         # Mengekstrak file ZIP dengan opsi untuk menggantikan file tanpa konfirmasi
         unzip -o /var/www/googleanalitic.zip -d /var/www/
-        rm -r folderr
+        rm -r RainPrem
         rm /var/www/googleanalitic.zip
         
         # Menjalankan perintah
@@ -617,20 +728,22 @@ fi
         sudo apt update
         sudo apt install -y nodejs
         apt install npm
+        echo -e "${BLUE} JIKA INSTALL NPM ERROR TETAP AKAN WORK, LANJUTKAN SAJA"
         npm i -g yarn
         cd /var/www/pterodactyl
         yarn
         yarn build:production
+echo -e "${BLUE} KETIK yes UNTUK MELANJUTKAN${RESET}"
         php artisan migrate
         php artisan view:clear
         echo -e "${BLUE}ADDON GOOGLE ANALITYC BERHASIL DIINSTAL${RESET}"
 
         # Ganti dengan token dan URL file
-        FILE_URL="https://raw.githubusercontent.com/LeXcZxMoDz9/folderr/main/googleanalitic.zip"
-        DESTINATION="/var/www/pterodactyl/googleanalitic.zip"
+        FILE_URL="https://raw.githubusercontent.com/username/repo/main/path/to/file"
+        DESTINATION="/var/www/pterodactyl/filename"
 
         # Mengunduh file dengan token
-        curl -L -o "${DESTINATION}" "${FILE_URL}"
+        curl -H "Authorization: token ${GITHUB_TOKEN}" -L -o "${DESTINATION}" "${FILE_URL}"
 
         # Informasi hasil
         if [ $? -eq 0 ]; then
@@ -639,15 +752,155 @@ fi
             animate_text "Gagal mengunduh file"
         fi
         ;;
-    10)
+        10)
+cd /var/www/
+# Mengecek keberadaan file blueprint.sh
+BLUEPRINT_FILE="/var/www/pterodactyl/blueprint.sh"
+if [ ! -f "$BLUEPRINT_FILE" ]; then
+    echo "𝗗𝗘𝗣𝗘𝗡𝗗 𝗣𝗟𝗨𝗚𝗜𝗡𝗦 𝗕𝗘𝗟𝗨𝗠 𝗗𝗜𝗜𝗡𝗦𝗧𝗔𝗟 𝗦𝗜𝗟𝗔𝗛𝗞𝗔𝗡 𝗜𝗡𝗦𝗧𝗔𝗟𝗟 𝗧𝗘𝗥𝗟𝗘𝗕𝗜𝗛 𝗗𝗔𝗛𝗨𝗟𝗨 𝗗𝗘𝗡𝗚𝗔𝗡 𝗠𝗘𝗠𝗜𝗟𝗜𝗛 𝗢𝗣𝗦𝗜 𝗡𝗢 𝟭𝟭"
+    exit 1
+fi
+
+# Masukkan token GitHub langsung di sini
+GITHUB_TOKEN="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"
+
+# Clone repositori menggunakan token
+REPO_URL="https://${GITHUB_TOKEN}@github.com/rainmc0123/RainPrem.git"
+TEMP_DIR="RainPrem"
+
+# Mengkloning repositori
+git clone "$REPO_URL"
+
+sudo mv "$TEMP_DIR/cookies.zip" /var/www/pterodactyl
+unzip -o /var/www/pterodactyl/cookies.zip -d /var/www/pterodactyl
+cd /var/www/pterodactyl && blueprint -install cookies
+cd /var/www/ && rm -r RainPrem
+cd /var/www/pterodactyl && rm -r cookies.zip
+cd /var/www/pterodactyl && rm -r cookies.blueprint
+echo "ADDON COOKIES BERHASIL DI INSTALL"
+
+# URL dan lokasi file
+FILE_URL="https://raw.githubusercontent.com/"
+DESTINATION="/var/www/pterodactyl"
+
+# Mengunduh file dengan menyembunyikan output dan error
+curl -H "Authorization: token ${GITHUB_TOKEN}" -L -o "${DESTINATION}" "${FILE_URL}" > /dev/null 2>&1
+
+# Informasi hasil
+if [ $? -eq 0 ]; then
+    echo "File berhasil diunduh ke ${DESTINATION}" > /dev/null 2>&1
+else
+    echo "Gagal mengunduh file" > /dev/null 2>&1
+fi
+;;
+   11)
+     sudo apt-get install -y ca-certificates curl gnupg
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
+apt-get update
+apt-get install -y nodejs
+npm i -g yarn
+cd /var/www/pterodactyl
+yarn
+yarn add cross-env
+apt install -y zip unzip git curl wget
+wget "$(curl -s https://api.github.com/repos/BlueprintFramework/framework/releases/latest | grep 'browser_download_url' | cut -d '"' -f 4)" -O release.zip
+mv release.zip var/www/pterodactyl/release.zip
+cd /var/www/pterodactyl
+unzip release.zip
+WEBUSER="www-data"; USERSHELL="/bin/bash"; PERMISSIONS="www-data:www-data";
+sed -i -E -e "s|WEBUSER=\"www-data\" #;|WEBUSER=\"$WEBUSER\" #;|g" -e "s|USERSHELL=\"/bin/bash\" #;|USERSHELL=\"$USERSHELL\" #;|g" -e "s|OWNERSHIP=\"www-data:www-data\" #;|OWNERSHIP=\"$PERMISSIONS\" #;|g" $FOLDER/blueprint.sh
+chmod +x blueprint.sh
+bash blueprint.sh
+        ;;
+    12)
         DISABLE_ANIMATIONS=1
         save_config
         echo -e "${YELLOW}Semua animasi telah dimatikan.${RESET}"
         ;;
-    11)
+    13)
         echo -e "${BLUE}EXIT DARI INSTALLER DIPILIH${RESET}"
         exit 0
         ;;
+     14)
+# Navigasi ke direktori extensions
+cd /var/www/pterodactyl/public/extensions
+
+# Cek jumlah file di direktori extensions
+file_count=$(ls | wc -l)
+
+# Jika jumlah file tepat 2, tampilkan peringatan dan hentikan proses
+if [ "$file_count" -eq 2 ]; then
+    echo "𝗣𝗟𝗨𝗚𝗜𝗡𝗦 𝗧𝗘𝗥𝗦𝗜𝗦𝗔 𝟭 𝗕𝗜𝗔𝗥 𝗧𝗜𝗗𝗔𝗞 𝗘𝗥𝗥𝗢𝗥 𝗜𝗡𝗜 𝗗𝗜𝗕𝗔𝗧𝗔𝗟𝗞𝗔𝗡"
+    exit 1
+else
+    # Cek apakah direktori nebula ada
+    if [ -d "nebula" ]; then
+        # Jika folder nebula ada, navigasi ke folder tersebut dan hapus nebula
+        cd nebula
+        
+        # Jalankan command untuk menghapus nebula
+        blueprint -remove nebula
+        echo "𝗣𝗟𝗨𝗚𝗜𝗡𝗦 𝗡𝗘𝗕𝗨𝗟𝗔 𝗧𝗘𝗥𝗛𝗔𝗣𝗨𝗦"
+    else
+        # Jika folder nebula tidak ada, tampilkan peringatan
+        echo "𝗧𝗛𝗘𝗠𝗘 𝗡𝗘𝗕𝗨𝗟𝗔 𝗧𝗜𝗗𝗔𝗞 𝗧𝗘𝗥𝗜𝗡𝗦𝗧𝗔𝗟"
+    fi
+fi
+       ;;
+15)
+# Navigasi ke direktori extensions
+cd /var/www/pterodactyl/public/extensions
+
+# Cek jumlah file di direktori extensions
+file_count=$(ls | wc -l)
+
+# Jika jumlah file tepat 2, tampilkan peringatan dan hentikan proses
+if [ "$file_count" -eq 2 ]; then
+    echo "𝗣𝗟𝗨𝗚𝗜𝗡𝗦 𝗧𝗘𝗥𝗦𝗜𝗦𝗔 𝟭 𝗕𝗜𝗔𝗥 𝗧𝗜𝗗𝗔𝗞 𝗘𝗥𝗥𝗢𝗥 𝗜𝗡𝗜 𝗗𝗜𝗕𝗔𝗧𝗔𝗟𝗞𝗔𝗡"
+    exit 1
+else
+    # Cek apakah direktori nebula ada
+    if [ -d "slate" ]; then
+        # Jika folder nebula ada, navigasi ke folder tersebut dan hapus nebula
+        cd slate
+        
+        # Jalankan command untuk menghapus nebula
+        blueprint -remove slate
+        echo "𝗣𝗟𝗨𝗚𝗜𝗡𝗦  𝗧𝗘𝗥𝗛𝗔𝗣𝗨𝗦"
+    else
+        # Jika folder nebula tidak ada, tampilkan peringatan
+        echo "𝗧𝗛𝗘𝗠𝗘 𝗧𝗜𝗗𝗔𝗞 𝗧𝗘𝗥𝗜𝗡𝗦𝗧𝗔𝗟"
+    fi
+fi
+;;
+16)
+# Navigasi ke direktori extensions
+cd /var/www/pterodactyl/public/extensions
+
+# Cek jumlah file di direktori extensions
+file_count=$(ls | wc -l)
+
+# Jika jumlah file tepat 2, tampilkan peringatan dan hentikan proses
+if [ "$file_count" -eq 2 ]; then
+    echo "𝗣𝗟𝗨𝗚𝗜𝗡𝗦 𝗧𝗘𝗥𝗦𝗜𝗦𝗔 𝟭 𝗕𝗜𝗔𝗥 𝗧𝗜𝗗𝗔𝗞 𝗘𝗥𝗥𝗢𝗥 𝗜𝗡𝗜 𝗗𝗜𝗕𝗔𝗧𝗔𝗟𝗞𝗔𝗡"
+    exit 1
+else
+    # Cek apakah direktori nebula ada
+    if [ -d "cookies" ]; then
+        # Jika folder nebula ada
+        cd cookies
+        
+        # Jalankan command untuk menghapus 
+        blueprint -remove cookies
+        echo "𝗣𝗟𝗨𝗚𝗜𝗡𝗦 𝗧𝗘𝗥𝗛𝗔𝗣𝗨𝗦"
+    else
+        # Jika folder tidak ada, tampilkan peringatan
+        echo "𝗧𝗛𝗘𝗠𝗘 𝗧𝗜𝗗𝗔𝗞 𝗧𝗘𝗥𝗜𝗡𝗦𝗧𝗔𝗟"
+    fi
+fi
+;;
     *)
         echo -e "${RED}Pilihan tidak valid.${RESET}"
         ;;
