@@ -176,8 +176,8 @@ case "$OPTION" in
         GITHUB_TOKEN="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"
 
         # Clone repositori menggunakan token
-        REPO_URL="https://${GITHUB_TOKEN}@github.com/rainmc0123/RainPrem.git"
-        TEMP_DIR="RainPrem"
+        REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
+        TEMP_DIR="folderr"
 
         # Mengkloning repositori
         git clone "$REPO_URL"
@@ -186,7 +186,7 @@ case "$OPTION" in
 
         # Mengekstrak file ZIP dengan opsi untuk menggantikan file tanpa konfirmasi
         unzip -o /var/www/ElysiumTheme.zip -d /var/www/
-        rm -r RainPrem
+        rm -r folderr
         rm /var/www/ElysiumTheme.zip
         
         # Menjalankan perintah
@@ -231,8 +231,8 @@ echo -e "${BLUE} KETIK yes UNTUK MELANJUTKAN${RESET}"
         GITHUB_TOKEN="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"
 
         # Clone repositori menggunakan token
-        REPO_URL="https://${GITHUB_TOKEN}@github.com/rainmc0123/RainPrem.git"
-        TEMP_DIR="RainPrem"
+        REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
+        TEMP_DIR="folderr"
 
         # Mengkloning repositori
         git clone "$REPO_URL"
@@ -241,7 +241,7 @@ echo -e "${BLUE} KETIK yes UNTUK MELANJUTKAN${RESET}"
 
         # Mengekstrak file ZIP dengan opsi untuk menggantikan file tanpa konfirmasi
         unzip -o /var/www/autosuspens.zip -d /var/www/
-        rm -r RainPrem
+        rm -r folderr
         rm /var/www/autosuspens.zip
         
         cd /var/www/pterodactyl
@@ -277,8 +277,8 @@ fi
     GITHUB_TOKEN="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"
 
     # Clone repositori menggunakan token
-    REPO_URL="https://${GITHUB_TOKEN}@github.com/rainmc0123/RainPrem.git"
-    TEMP_DIR="RainPrem"
+    REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
+    TEMP_DIR="folderr"
 
     # Mengkloning repositori
     git clone "$REPO_URL"
@@ -286,7 +286,7 @@ fi
     sudo mv "$TEMP_DIR/nebulaptero.zip" /var/www/
     unzip -o /var/www/nebulaptero.zip -d /var/www/
     cd /var/www/pterodactyl && blueprint -install nebula
-  cd /var/www/ && rm -r RainPrem
+  cd /var/www/ && rm -r folderr
   cd /var/www/ && rm -r nebulaptero.zip
 cd /var/www/pterodactyl && rm -r nebula.blueprint
 echo "NEBULA THEME BERHASIL DI INSTALL"
@@ -316,8 +316,8 @@ fi
     GITHUB_TOKEN="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"
 
     # Clone repositori menggunakan token
-    REPO_URL="https://${GITHUB_TOKEN}@github.com/rainmc0123/RainPrem.git"
-    TEMP_DIR="RainPrem"
+    REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
+    TEMP_DIR="folderr"
 
     # Mengkloning repositori
     git clone "$REPO_URL"
@@ -326,7 +326,7 @@ fi
     sudo mv "$TEMP_DIR/Slate-v1.0.zip" /var/www/
     unzip -o /var/www/Slate-v1.0.zip -d /var/www/
     cd /var/www/pterodactyl && blueprint -install slate
-  cd /var/www/ && rm -r RainPrem
+  cd /var/www/ && rm -r folderr
   cd /var/www/ && rm -r Slate-v1.0.zip
 # URL dan lokasi file
 FILE_URL="https://raw.githubusercontent.com/"
@@ -374,8 +374,8 @@ cd /var/www/
 GITHUB_TOKEN="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"
 
 # Clone repositori menggunakan token
-REPO_URL="https://${GITHUB_TOKEN}@github.com/rainmc0123/RainPrem.git"
-TEMP_DIR="RainPrem"
+REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
+TEMP_DIR="folderr"
 
 # Mengkloning repositori
 git clone "$REPO_URL" "$TEMP_DIR" >/dev/null 2>&1
@@ -702,8 +702,8 @@ fi
         GITHUB_TOKEN="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"
 
         # Clone repositori menggunakan token
-        REPO_URL="https://${GITHUB_TOKEN}@github.com/rainmc0123/RainPrem.git"
-        TEMP_DIR="RainPrem"
+        REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
+        TEMP_DIR="folderr"
 
         # Mengkloning repositori
         git clone "$REPO_URL"
@@ -712,7 +712,7 @@ fi
 
         # Mengekstrak file ZIP dengan opsi untuk menggantikan file tanpa konfirmasi
         unzip -o /var/www/googleanalitic.zip -d /var/www/
-        rm -r RainPrem
+        rm -r folderr
         rm /var/www/googleanalitic.zip
         
         # Menjalankan perintah
@@ -765,8 +765,8 @@ fi
 GITHUB_TOKEN="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"
 
 # Clone repositori menggunakan token
-REPO_URL="https://${GITHUB_TOKEN}@github.com/rainmc0123/RainPrem.git"
-TEMP_DIR="RainPrem"
+REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
+TEMP_DIR="folderr"
 
 # Mengkloning repositori
 git clone "$REPO_URL"
@@ -774,7 +774,7 @@ git clone "$REPO_URL"
 sudo mv "$TEMP_DIR/cookies.zip" /var/www/pterodactyl
 unzip -o /var/www/pterodactyl/cookies.zip -d /var/www/pterodactyl
 cd /var/www/pterodactyl && blueprint -install cookies
-cd /var/www/ && rm -r RainPrem
+cd /var/www/ && rm -r folderr
 cd /var/www/pterodactyl && rm -r cookies.zip
 cd /var/www/pterodactyl && rm -r cookies.blueprint
 echo "ADDON COOKIES BERHASIL DI INSTALL"
