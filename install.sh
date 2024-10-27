@@ -201,7 +201,6 @@ case "$OPTION" in
         php artisan migrate
         php artisan view:clear
         animate_text "Tema Elysium berhasil diinstal."
-        fi
         ;;
     4)
         # Masukkan token GitHub langsung di sini
