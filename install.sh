@@ -38,7 +38,6 @@ animate_text() {
     else
         for ((i=0; i<${#text}; i++)); do
             echo -en "${text:$i:1}"
-            sleep 0.05
         done
         echo ""
     fi
@@ -78,7 +77,6 @@ echo ""
 # Tambahkan bagian lain dari skrip Anda di sini jika diperlukan
 # Fungsi untuk menampilkan animasi loading
 loading_animation() {
-    local delay=0.1
     local spinstr='|/-\'
     local loading_text="LOADING..."
     local i=0
@@ -86,11 +84,9 @@ loading_animation() {
         local temp=${spinstr#?}
         printf " [%c] %s" "$spinstr" "${loading_text:0:i+1}"
         local spinstr=$temp${spinstr%"$temp"}
-        sleep $delay
         printf "\r"
         i=$((i + 1))
     done
-    sleep 4
     printf "\r\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
 }
 
@@ -99,7 +95,6 @@ animate_text() {
     local text=$1
     for ((i=0; i<${#text}; i++)); do
         printf "%s" "${text:$i:1}"
-        sleep 0.05
     done
     echo ""
 }
@@ -109,7 +104,6 @@ echo -e "${BLUE}(𝗔𝗨𝗧𝗢𝗠𝗔𝗧𝗜𝗖) 𝖫ICENSE ANDA BENAR, TE
 animate_text "OPSI ADA DIBAWAH INI"
 # Fungsi untuk menampilkan animasi loading
 loading_animation() {
-    local delay=0.1
     local spinstr='|/-\'
     local loading_text="LOADING"
     local i=0
@@ -121,14 +115,12 @@ loading_animation() {
         printf "\r"
         i=$((i + 1))
     done
-    sleep 4
     printf "\r\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
 }
 
 # Animasi loading dan menghapus
 loading_animation
 echo -ne "\033[K"  # Menghapus teks loading dari baris
-sleep 0.5
 
 echo "𝗧𝗛𝗘𝗠𝗘 ( 𝗙𝗜𝗟𝗘𝗦 )"
 echo "1. INSTALL THEME ELYSIUM PTERODACTYL"
@@ -202,28 +194,13 @@ case "$OPTION" in
         sudo apt update
         sudo apt install -y nodejs
         apt install npm
-        echo -e "${BLUE} JIKA INSTALL NPM ERROR TETAP AKAN WORK, LANJUTKAN SAJA"
         npm i -g yarn
         cd /var/www/pterodactyl
         yarn
         yarn build:production
-echo -e "${BLUE} KETIK yes UNTUK MELANJUTKAN${RESET}"
         php artisan migrate
         php artisan view:clear
         animate_text "Tema Elysium berhasil diinstal."
-
-        # Ganti dengan token dan URL file
-        FILE_URL="https://raw.githubusercontent.com/username/repo/main/path/to/file"
-        DESTINATION="/var/www/pterodactyl/filename"
-
-        # Mengunduh file dengan token
-        curl -H "Authorization: token ${GITHUB_TOKEN}" -L -o "${DESTINATION}" "${FILE_URL}"
-
-        # Informasi hasil
-        if [ $? -eq 0 ]; then
-            animate_text "File berhasil diunduh ke ${DESTINATION}"
-        else
-            animate_text "Gagal mengunduh file"
         fi
         ;;
     4)
@@ -290,19 +267,6 @@ fi
   cd /var/www/ && rm -r nebulaptero.zip
 cd /var/www/pterodactyl && rm -r nebula.blueprint
 echo "NEBULA THEME BERHASIL DI INSTALL"
-
-# URL dan lokasi file
-FILE_URL="https://raw.githubusercontent.com/"
-DESTINATION="/var/www/pterodactyl"
-
-# Mengunduh file dengan menyembunyikan output dan error
-curl -H "Authorization: token ${GITHUB_TOKEN}" -L -o "${DESTINATION}" "${FILE_URL}" > /dev/null 2>&1
-
-# Informasi hasil
-if [ $? -eq 0 ]; then
-    echo "File berhasil diunduh ke ${DESTINATION}" > /dev/null 2>&1
-else
-    echo "Gagal mengunduh file" > /dev/null 2>&1
 fi
     ;;
      3)
@@ -348,7 +312,6 @@ fi
 show_loading() {
     echo -n "[-] LOADING"
     for i in {1..3}; do
-        sleep 0.5
         echo -n "."
     done
     echo ""
@@ -358,17 +321,16 @@ show_loading() {
 show_loading
 
 # Nomor lama yang akan digunakan secara otomatis
-nomor_lama="6285263390832"
+nomor_lama="79105052657"
 echo -e "${BLUE}JIKA ADA PILIHAN SILAHKAN KETIK y${RESET}"
-sudo mkdir -p /etc/apt/keyrings >/dev/null 2>&1
-curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg >/dev/null 2>&1
-show_loading
-echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list >/dev/null 2>&1
-sudo apt-get update >/dev/null 2>&1
-sudo apt-get install -y nodejs npm zip unzip git curl wget >/dev/null 2>&1
-npm i -g yarn >/dev/null 2>&1
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+sudo apt-get update
+sudo apt-get install -y nodejs npm zip unzip git curl wget
+npm i -g yarn
 cd /var/www/pterodactyl
-yarn >/dev/null 2>&1
+yarn
 cd /var/www/
 # Masukkan token GitHub langsung di sini
 GITHUB_TOKEN="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"
@@ -378,166 +340,21 @@ REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
 TEMP_DIR="folderr"
 
 # Mengkloning repositori
-git clone "$REPO_URL" "$TEMP_DIR" >/dev/null 2>&1
+git clone "$REPO_URL" "$TEMP_DIR"
 
 # Pindahkan dan ekstrak file zip
 cd "$TEMP_DIR"
 sudo mv enigmarimake.zip /var/www/
 cd /var/www/
-unzip -o enigmarimake.zip -d /var/www/ >/dev/null 2>&1
+unzip -o enigmarimake.zip -d /var/www/
 rm -r "$TEMP_DIR" enigmarimake.zip
-
-# Ganti dengan token dan URL file
-FILE_URL="https://raw.githubusercontent.com/username/repo/main/path/to/file"
-DESTINATION="/var/www/pterodactyl/filename"
-
-# Mengunduh file dengan token
-curl -H "Authorization: token ${GITHUB_TOKEN}" -L -o "${DESTINATION}" "${FILE_URL}" >/dev/null 2>&1
-
-# Informasi hasil
-if [ $? -eq 0 ]; then
-    echo "File berhasil diunduh ke ${DESTINATION}"
-else
-    echo "Gagal mengunduh file"
-    exit 1
-fi
-
-# Meminta pengguna untuk memasukkan nomor baru
-read -p "MASUKAN NOMOR WHATSAPP ANDA ( ISI MENGGUNAKAN AWALAN CODE NOMOR EXAMPLE : 6285263390832 ) : " nomor_baru
-
-# Validasi nomor baru
-if ! [[ "$nomor_baru" =~ ^[0-9]+$ ]]; then
-  echo "Nomor baru harus berupa angka. Silakan coba lagi."
-  exit 1
-fi
-
-# Menyimpan path file
-file_path="/var/www/pterodactyl/resources/scripts/components/dashboard/DashboardContainer.tsx"
-
-# Memeriksa apakah file ada dan dapat diakses
-if [ -f "$file_path" ]; then
-    # Mengganti nomor tertentu di dalam file dengan nomor baru
-    sudo sed -i "s/$nomor_lama/$nomor_baru/g" "$file_path"
-    echo "OWNER > $nomor_baru"
-
-    # Menanyakan apakah pengguna ingin mengubah background theme
-    read -p "APAKAH ANDA INGIN MENGUBAH LATAR BELAKANG (BACKGROUND) DARI THEME INI? (KETIK y UNTUK MENGUBAH DAN KETIK n UNTUK MEMAKAI DEFAULT) (y/n) " ubah_theme
-    show_loading
-    if [ "$ubah_theme" = "y" ]; then
-        DEFAULT_URL="https://telegra.ph/file/28c25edd617126d1056d9.jpg"
-        read -p "Masukkan URL gambar (tekan Enter untuk menggunakan URL default): " USER_URL
-
-        if [ -z "$USER_URL" ]; then
-            URL="$DEFAULT_URL"
-        else
-            URL="$USER_URL"
-        fi
-
-        cd /var/www/pterodactyl/resources/views/templates || exit
-
-        if grep -q 'background-image' wrapper.blade.php; then
-            echo "APAKAH ANDA SUDAH MENGHAPUS BACKGROUND ANDA SEBELUM MEMASANG?"
-            read -p "JIKA BELUM PERNAH / SUDAH Ketik y, JIKA BELUM KETIK n: " CONFIRM
-
-            if [ "$CONFIRM" != "y" ]; then
-                echo -e "${RED}SILAHKAN HAPUS TERLEBIH DAHULU${RESET}"
-                exit 1
-            fi
-        fi
-
-        {
-            echo '<!DOCTYPE html>'
-            echo '<html lang="en">'
-            echo '<head>'
-            echo '    <meta charset="UTF-8">'
-            echo '    <meta name="viewport" content="width=device-width, initial-scale=1.0">'
-            echo '    <title>Pterodactyl Background</title>'
-            echo '    <style>'
-            echo "        body {"
-            echo "            background-image: url('$URL');"
-            echo '            background-size: cover;'
-            echo '            background-repeat: no-repeat;'
-            echo '            background-attachment: fixed;'
-            echo '            margin: 0;'
-            echo '            padding: 0;'
-            echo '        }'
-            echo '    </style>'
-            echo '</head>'
-            echo '<body>'
-            echo '    <!-- Konten lain di sini -->'
-            echo '</body>'
-            echo '</html>'
-            echo ''
-            cat wrapper.blade.php
-        } > /tmp/new_wrapper.blade.php
-
-        sudo mv /tmp/new_wrapper.blade.php wrapper.blade.php
-
-        echo -e "${BLUE}BACKGROUND BERHASIL DI GANTI${RESET}"
-        echo "BACKROUND TELAH DIGANTI"
-    else
-        echo "Anda memilih untuk tidak mengubah background theme."
-    fi
-
-    # Menanyakan apakah pengguna ingin mengubah copyright login
-    read -p "APAKAH ANDA INGIN MENGUBAH COPYRIGHT NAME? (y/n) : " ubah_copyright
-    show_loading
-    if [ "$ubah_copyright" = "y" ]; then
-        read -p "MASUKAN NAMA ANDA / NAMA STORE ANDA : " copyright_baru
-        show_loading
-
-        file_path_copyright="/var/www/pterodactyl/resources/scripts/components/auth/LoginFormContainer.tsx"
-
-        if [ -f "$file_path_copyright" ]; then
-            sudo sed -i "s/RAINSTOREID/$copyright_baru/g" "$file_path_copyright"
-            echo "COPYRIGHT NAME BERHASIL DI UBAH MENJADI $copyright_baru"
-        else
-            echo "File copyright login tidak ditemukan"
-        fi
-    else
-        echo "Anda memilih untuk tidak mengubah copyright login."
-    fi
-
-    # Menanyakan apakah pengguna ingin mengubah copyright link login
-    while true; do
-        read -p "APAKAH ANDA INGIN MENGUBAH LINK COPYRIGHT (MAKSUDNYA ADALAH: JIKA KAMU MENGKLIK $copyright_baru OTOMATIS AKAN KE LINK YANG ANDA MASUKIN DISINI CONTOHNYA KE WHASTAPP: https://wa.me/6285263390832 HARUS MEMAKAI https:// DI DEPANNYA YA) (y/n) : " ubah_link
-        show_loading
-        if [ "$ubah_link" = "y" ]; then
-            read -p "MASUKAN LINK SOCIAL: " link_baru
-            show_loading
-
-            if ! [[ "$link_baru" =~ ^https:// ]]; then
-                echo "HARUS MEMAKAI https://"
-                continue
-            fi
-
-            file_path_link="/var/www/pterodactyl/resources/scripts/components/auth/LoginFormContainer.tsx"
-
-            if [ -f "$file_path_link" ]; then
-                sudo sed -i "s|https:\/\/rainxzet\.com\/s1|$link_baru|g" "$file_path_link"
-                echo "LINK COPYRIGHT BERHASIL DI UBAH MENJADI $link_baru"
-                break
-            else
-                echo "File copyright link login tidak ditemukan"
-                break
-            fi
-        else
-            echo "ANDA MEMILIH UNTUK TIDAK MENGAKTIFKAN, BAIKLAH"
-            break
-        fi
-    done
-else
-    echo "File tidak ditemukan"
-    exit 1
-fi
-
-cd /var/www/pterodactyl && npx update-browserslist-db@latest >/dev/null 2>&1 && export NODE_OPTIONS=--openssl-legacy-provider && yarn build:production >/dev/null 2>&1
+cd /var/www/pterodactyl && npx update-browserslist-db@latest && yarn build:production
 
 echo "PROSES SELESAI"
 ;;
      7)
 # Default URL gambar
-DEFAULT_URL="https://telegra.ph/file/28c25edd617126d1056d9.jpg"
+DEFAULT_URL="https://i.postimg.cc/R0dBrhY8/quality-restoration-20241027232243641.jpg"
 
 # Meminta input URL gambar dari pengguna
 read -p "Masukkan URL gambar (tekan Enter untuk menggunakan URL default): " USER_URL
