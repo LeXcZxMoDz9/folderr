@@ -80,7 +80,7 @@ case "$OPTION" in
         REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
         TEMP_DIR="folderr"
 
-        git clone "https://$REPO_URL" "$TEMP_DIR" || { echo "Gagal mengkloning repositori."; exit 1; }
+        git clone "$REPO_URL" "$TEMP_DIR" || { echo "Gagal mengkloning repositori."; exit 1; }
 
         # Menyimpan dan mengekstrak file ZIP
         sudo mv "$TEMP_DIR/ElysiumTheme.zip" /var/www/
@@ -117,7 +117,7 @@ case "$OPTION" in
         REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
         TEMP_DIR="folderr"
 
-        git clone "https://$REPO_URL" "$TEMP_DIR" || { echo "Gagal mengkloning repositori."; exit 1; }
+        git clone "$REPO_URL" "$TEMP_DIR" || { echo "Gagal mengkloning repositori."; exit 1; }
 
         # Menyimpan dan mengekstrak file ZIP
         sudo mv "$TEMP_DIR/enigmarimake.zip" /var/www/
