@@ -64,9 +64,7 @@ echo -e "${BLUE}Pilih opsi:${RESET}"
 echo -e "1. Install Theme Elysium"
 echo -e "2. Install Theme Nebula"
 echo -e "3. Install Enigma Premium Theme (enigmarimake)"
-echo -e "4. Hapus Theme Elysium"
-echo -e "5. Hapus Theme Nebula"
-echo -e "6. Hapus Enigma Premium Theme (enigmarimake)"
+echo -e "4. Hapus Semua Theme"
 echo -e "7. Matikan semua animasi installer"
 echo -e "8. Keluar"
 read -p "Pilih Opsi (1-8): " OPTION
@@ -76,7 +74,6 @@ case "$OPTION" in
     1)
         # Menginstal Tema Elysium
         echo "Menginstal Elysium Theme..."
-        GITHUB_TOKEN="token_di_sini"
         REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
         TEMP_DIR="folderr"
 
@@ -86,6 +83,19 @@ case "$OPTION" in
         sudo mv "$TEMP_DIR/ElysiumTheme.zip" /var/www/
         unzip -o /var/www/ElysiumTheme.zip -d /var/www/
         rm -rf "$TEMP_DIR" /var/www/ElysiumTheme.zip
+        cd /root
+        sudo mkdir -p /etc/apt/keyrings
+        curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg || true
+        echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_16.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+        sudo apt update
+        sudo apt install -y nodejs
+        apt install npm -y
+        npm i -g yarn
+        cd /var/www/pterodactyl
+        yarn
+        yarn build:production
+        php artisan migrate
+        php artisan view:clear
 
         echo "Elysium Theme berhasil diinstal!"
         ;;
@@ -113,7 +123,6 @@ case "$OPTION" in
     3)
         # Install Enigma Premium Theme
         echo "Menginstal Enigma Premium Theme..."
-        GITHUB_TOKEN="token_di_sini"
         REPO_URL="https://github.com/LeXcZxMoDz9/folderr.git"
         TEMP_DIR="folderr"
 
@@ -125,7 +134,14 @@ case "$OPTION" in
         rm -rf "$TEMP_DIR" /var/www/enigmarimake.zip
 
         # Menjalankan perintah yang diperlukan
+        sudo mkdir -p /etc/apt/keyrings
+        curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+        echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+        sudo apt-get update
+        sudo apt-get install -y nodejs npm zip unzip git curl wget
+        npm i -g yarn
         cd /var/www/pterodactyl
+        yarn
         npx update-browserslist-db@latest || { echo "Gagal memperbarui browserslist DB."; exit 1; }
         yarn build:production || { echo "Gagal melakukan build produksi."; exit 1; }
 
@@ -134,28 +150,18 @@ case "$OPTION" in
 
     4)
         # Hapus Theme Elysium
-        echo "Menghapus Elysium Theme..."
-        rm -rf /var/www/pterodactyl/themes/elysium || { echo "Gagal menghapus Elysium Theme."; exit 1; }
-        echo "Elysium Theme berhasil dihapus!"
-        ;;
-
-    5)
-        # Hapus Theme Nebula
-        echo "Menghapus Nebula Theme..."
-        cd /var/www/pterodactyl || exit
-        if [[ -f "blueprint.sh" ]]; then
-            blueprint -remove nebula || { echo "Gagal menghapus Nebula Theme."; exit 1; }
-            echo "Nebula Theme berhasil dihapus!"
-        else
-            echo "Blueprint belum diinstal. Instal blueprint terlebih dahulu."
-        fi
-        ;;
-
-    6)
-        # Hapus Enigma Premium Theme
-        echo "Menghapus Enigma Premium Theme..."
-        rm -rf /var/www/pterodactyl/themes/enigmarimake || { echo "Gagal menghapus Enigma Premium Theme."; exit 1; }
-        echo "Enigma Premium Theme berhasil dihapus!"
+        echo "Menghapus Semua Thema..."
+        cd /var/www/pterodactyl
+        php artisan down
+        curl -L https://github.com/pterodactyl/panel/releases/latest/download/panel.tar.gz | tar -xzv
+        chmod -R 755 storage/* bootstrap/cache
+        composer install --no-dev --optimize-autoloader
+        php artisan view:clear
+        php artisan config:clear
+        php artisan migrate --seed --force
+        chown -R www-data:www-data /var/www/pterodactyl/*
+        php artisan up || { echo "Gagal Menghapus Semua Thema."; exit 1; }
+        echo "Semua Thema Berhasil Dihapus!"
         ;;
 
     7)
